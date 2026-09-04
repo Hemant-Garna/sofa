@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-serif), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-sans), "Plus Jakarta Sans", system-ui, sans-serif;
+  --color-atelier-blush: #EBD7D1;
+  --color-atelier-cream: #FAF8F5;
+  --color-atelier-stone: #DFC8C1;
+  --color-atelier-stone-light: #E8E4DC;
+  --color-atelier-gold: #A37B30;
+  --color-atelier-gold-dark: #8C6826;
+  --color-atelier-gold-light: #C49E4F;
+  --color-atelier-charcoal: #1C1917;
+  --color-atelier-gray: #57534E;
+}
+
+/* Custom scrollbar and smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAF8F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #DFC8C1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A37B30;
+}

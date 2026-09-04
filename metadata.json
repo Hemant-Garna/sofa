@@ -1,0 +1,6 @@
+{
+  "name": "LUXE Atelier",
+  "description": "Ultra-luxury handcrafted sofa atelier offering bespoke silhouettes, fine Italian leathers, and architectural comfort.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
