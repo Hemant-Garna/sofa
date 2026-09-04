@@ -1,5 +1,7 @@
 import type {NextConfig} from 'next';
 
+const isGithubActions = process.env.GITHUB_ACTIONS === 'true';
+
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   eslint: {
@@ -8,8 +10,11 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: false,
   },
+  output: isGithubActions ? 'export' : 'standalone',
+  basePath: isGithubActions ? (process.env.NEXT_PUBLIC_BASE_PATH || '') : '',
   // Allow access to remote image placeholders and Unsplash luxury editorial images
   images: {
+    unoptimized: isGithubActions,
     remotePatterns: [
       {
         protocol: 'https',
@@ -31,7 +36,6 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  output: 'standalone',
   transpilePackages: ['motion'],
   webpack: (config, {dev}) => {
     // HMR is disabled in AI Studio via DISABLE_HMR env var.
