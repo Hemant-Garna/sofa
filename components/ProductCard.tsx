@@ -67,6 +67,7 @@ export function ProductCard({ product, onOpenDetails }: ProductCardProps) {
           src={product.images[0]}
           alt={product.name}
           fill
+          loading="lazy"
           className="object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           referrerPolicy="no-referrer"
@@ -118,11 +119,6 @@ export function ProductCard({ product, onOpenDetails }: ProductCardProps) {
           >
             {product.name}
           </h3>
-
-          {/* Subtitle */}
-          <p className="text-xs text-[#57534E] mt-0.5 line-clamp-1">
-            {product.subtitle}
-          </p>
 
           {/* Color Swatch Dots */}
           <div className="mt-3 flex items-center space-x-1.5">

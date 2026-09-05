@@ -157,6 +157,7 @@ export function ProductDetailModal({ product, isOpen, onClose }: ProductDetailMo
                     src={img}
                     alt={`Thumbnail ${idx + 1}`}
                     fill
+                    loading="lazy"
                     className="object-cover"
                     sizes="64px"
                     referrerPolicy="no-referrer"

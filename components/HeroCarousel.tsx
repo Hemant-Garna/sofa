@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'motion/react';
-import { ArrowRight, Sparkles, Play, Pause, ChevronLeft, ChevronRight, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
 
 interface HeroCarouselProps {
   onExploreClick: () => void;
@@ -50,26 +50,20 @@ const HERO_SLIDES: HeroSlide[] = [
   }
 ];
 
-export function HeroCarousel({ onExploreClick, onBespokeClick }: HeroCarouselProps) {
+export function HeroCarousel({ onExploreClick }: HeroCarouselProps) {
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
 
   const nextSlide = useCallback(() => {
     setCurrentSlideIndex((prev) => (prev + 1) % HERO_SLIDES.length);
   }, []);
 
-  const prevSlide = useCallback(() => {
-    setCurrentSlideIndex((prev) => (prev - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
-  }, []);
-
-  // Autoplay functionality with pause capability
+  // Autoplay functionality with smooth crossfade
   useEffect(() => {
-    if (isPaused) return;
     const interval = setInterval(() => {
       nextSlide();
     }, 6000);
     return () => clearInterval(interval);
-  }, [isPaused, nextSlide]);
+  }, [nextSlide]);
 
   const slide = HERO_SLIDES[currentSlideIndex];
 
@@ -91,6 +85,7 @@ export function HeroCarousel({ onExploreClick, onBespokeClick }: HeroCarouselPro
                 alt={s.title}
                 fill
                 priority={index === 0}
+                loading={index === 0 ? undefined : 'lazy'}
                 className={`object-cover object-center brightness-[0.75] transition-transform duration-[6000ms] ease-out ${
                   isActive ? 'scale-100' : 'scale-105'
                 }`}
@@ -135,18 +130,8 @@ export function HeroCarousel({ onExploreClick, onBespokeClick }: HeroCarouselPro
                 {slide.title}
               </h1>
 
-              {/* Editorial Description */}
-              <p className="text-sm sm:text-base lg:text-lg text-[#FAF8F5]/80 max-w-2xl font-light leading-relaxed text-center mx-auto">
-                {slide.subtitle}
-              </p>
-
-              {/* Artisan Note */}
-              <div className="pt-1 text-[11px] sm:text-xs tracking-[0.2em] uppercase text-[#E8C988] font-medium text-center">
-                {slide.provenance} &mdash; <span className="text-white/90">{slide.accent}</span>
-              </div>
-
               {/* Hero Action CTA */}
-              <div className="pt-4 flex items-center justify-center">
+              <div className="pt-2 flex items-center justify-center">
                 <button
                   id="btn-hero-explore-curated"
                   type="button"
@@ -160,65 +145,6 @@ export function HeroCarousel({ onExploreClick, onBespokeClick }: HeroCarouselPro
 
             </motion.div>
           </AnimatePresence>
-
-        </div>
-      </div>
-
-      {/* Slideshow Control Strip (Dots, Play/Pause, Next/Prev) */}
-      <div className="absolute bottom-8 left-0 right-0 z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between border-t border-white/15 pt-5 text-white">
-          
-          {/* Indicator Dots */}
-          <div className="flex items-center space-x-3">
-            {HERO_SLIDES.map((s, index) => (
-              <button
-                key={s.id}
-                type="button"
-                onClick={() => setCurrentSlideIndex(index)}
-                className={`transition-all duration-300 rounded-full cursor-pointer ${
-                  currentSlideIndex === index
-                    ? 'w-8 h-1.5 bg-[#A37B30]'
-                    : 'w-2 h-1.5 bg-white/40 hover:bg-white/70'
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-            
-            {/* Play / Pause Toggle */}
-            <button
-              id="btn-hero-play-pause"
-              type="button"
-              onClick={() => setIsPaused(!isPaused)}
-              className="ml-2 p-1.5 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white/80 hover:text-white cursor-pointer"
-              title={isPaused ? 'Resume autoplay' : 'Pause autoplay'}
-              aria-label={isPaused ? 'Resume slideshow' : 'Pause slideshow'}
-            >
-              {isPaused ? <Play className="w-3 h-3 fill-current" /> : <Pause className="w-3 h-3 fill-current" />}
-            </button>
-          </div>
-
-          {/* Slide Arrow Navigation */}
-          <div className="flex items-center space-x-2">
-            <span className="text-[11px] tracking-widest text-white/60 mr-2 font-mono">
-              0{currentSlideIndex + 1} / 0{HERO_SLIDES.length}
-            </span>
-            <button
-              type="button"
-              onClick={prevSlide}
-              className="p-2 rounded-full border border-white/20 hover:border-white/60 bg-white/5 hover:bg-white/15 transition-all text-white cursor-pointer"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              type="button"
-              onClick={nextSlide}
-              className="p-2 rounded-full border border-white/20 hover:border-white/60 bg-white/5 hover:bg-white/15 transition-all text-white cursor-pointer"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-          </div>
 
         </div>
       </div>

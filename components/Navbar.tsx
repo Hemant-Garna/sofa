@@ -117,23 +117,15 @@ export function Navbar({ onOpenProductModal, onScrollToSection }: NavbarProps) {
             {/* Brand Identity: Diamond Emblem Logo on Left */}
             <div
               id="nav-brand-logo"
-              className="flex flex-col cursor-pointer select-none"
+              className="flex items-center cursor-pointer select-none"
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              title="LUXE Atelier"
+              aria-label="LUXE Atelier Home"
             >
-              <div className="flex items-center gap-2.5">
-                {/* Diamond Emblem */}
-                <div className="relative w-7 h-7 flex items-center justify-center">
-                  <div className="absolute inset-0 rotate-45 border border-[#A37B30] bg-[#FAF8F5] transition-transform duration-500 hover:rotate-90 shadow-2xs" />
-                  <span className="relative z-10 font-serif text-sm font-bold text-[#A37B30]">L</span>
-                </div>
-                <div className="flex flex-col text-left">
-                  <span className="font-serif tracking-[0.3em] text-lg sm:text-xl font-bold uppercase text-[#1C1917] leading-tight">
-                    LUXE
-                  </span>
-                  <span className="text-[8px] tracking-[0.45em] text-[#57534E] uppercase font-medium -mt-0.5">
-                    ATELIER
-                  </span>
-                </div>
+              {/* Diamond Emblem */}
+              <div className="relative w-7 h-7 flex items-center justify-center">
+                <div className="absolute inset-0 rotate-45 border border-[#A37B30] bg-[#FAF8F5] transition-transform duration-500 hover:rotate-90 shadow-2xs" />
+                <span className="relative z-10 font-serif text-sm font-bold text-[#A37B30]">L</span>
               </div>
             </div>
           </div>
@@ -261,6 +253,7 @@ export function Navbar({ onOpenProductModal, onScrollToSection }: NavbarProps) {
                                       src={prod.images[0]}
                                       alt={prod.name}
                                       fill
+                                      loading="lazy"
                                       className="object-cover group-hover:scale-105 transition-transform"
                                       sizes="48px"
                                       referrerPolicy="no-referrer"
@@ -303,6 +296,7 @@ export function Navbar({ onOpenProductModal, onScrollToSection }: NavbarProps) {
                                       src={prod.images[0]}
                                       alt={prod.name}
                                       fill
+                                      loading="lazy"
                                       className="object-cover group-hover:scale-105 transition-transform"
                                       sizes="56px"
                                       referrerPolicy="no-referrer"

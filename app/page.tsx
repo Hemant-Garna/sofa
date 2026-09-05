@@ -11,6 +11,7 @@ import { CartDrawer } from '@/components/CartDrawer';
 import { VIPAuthModal } from '@/components/VIPAuthModal';
 import { CheckoutModal } from '@/components/CheckoutModal';
 import { Footer } from '@/components/Footer';
+import { useScrollAnimationObserver } from '@/components/ScrollReveal';
 import { Product } from '@/lib/types';
 import { CURATED_PRODUCTS } from '@/lib/products-data';
 
@@ -18,6 +19,9 @@ function AtelierAppContent() {
   const [selectedProductForModal, setSelectedProductForModal] = useState<Product | null>(null);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+
+  // Initialize smooth scroll-driven Intersection Observer
+  useScrollAnimationObserver();
 
   const { openAuthModal } = useVIP();
 

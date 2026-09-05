@@ -134,6 +134,7 @@ export function CartDrawer({ onProceedToCheckout, onExploreCatalog }: CartDrawer
                           src={item.image}
                           alt={item.name}
                           fill
+                          loading="lazy"
                           className="object-cover"
                           sizes="96px"
                           referrerPolicy="no-referrer"
