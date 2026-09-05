@@ -38,6 +38,7 @@ jobs:
 
       - name: Build and export static site with Next.js
         env:
+          NODE_ENV: production
           GITHUB_ACTIONS: "true"
           NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: npx next build

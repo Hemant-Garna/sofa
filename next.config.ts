@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: false,
   },
   output: isGithubActions ? 'export' : 'standalone',
+  trailingSlash: isGithubActions,
   basePath: isGithubActions ? (process.env.NEXT_PUBLIC_BASE_PATH || '') : '',
   // Allow access to remote image placeholders and Unsplash luxury editorial images
   images: {

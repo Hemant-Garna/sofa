@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:pages": "NODE_ENV=production GITHUB_ACTIONS=true next build",
     "start": "next start",
     "lint": "eslint .",
     "clean": "next clean"
